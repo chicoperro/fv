@@ -1,0 +1,90 @@
+
+{% load static %}
+
+{% block extrastatic %}
+<link rel="stylesheet" href="{% static 'css/newaccount.css' %}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{% block content %}
+<hgroup>
+	<h1>Maipo Grande</h1>
+	<a class="back" href="{% url 'base:index' %}">volver al inicio</a>
+</hgroup>
+<form method="post">
+{% csrf_token %}
+
+<div class="group">
+  <h2>Nueva cuenta</h2>
+</div>
+
+<div class="group">
+  <input type="text" name="first_name"><span class="highlight"></span><span class="bar"></span>
+  <label>Ingrese su Nombre</label>
+		  {% for error in form.first_name.errors %}
+			<div class="alert alert-danger">
+				<strong> Debe ingresar al menos un nombre </strong>
+			</div>
+		{% endfor %}
+</div>
+
+<div class="group">
+  <input type="text" name="last_name"><span class="highlight"></span><span class="bar"></span>
+  <label>Ingrese sus apellidos</label>
+		  {% for error in form.last_name.errors %}
+			<div class="alert alert-danger">
+				<strong> Debe ingresar al menos un apellido </strong>
+			</div>
+		{% endfor %}
+</div>
+
+<div class="group">
+  <input type="text" name="username"><span class="highlight"></span><span class="bar"></span>
+  <label>Nombre de usuario</label>
+		{% for error in form.username.errors %}
+			<div class="alert alert-danger">
+				<strong> Debe ingresar un nombre de usuario </strong>
+			</div>
+		{% endfor %}
+</div>
+
+<div class="group">
+  <input type="email" name="email"><span class="highlight"></span><span class="bar"></span>
+  <label>Ingrese su correo electrónico</label>
+		{% for error in form.email.errors %}
+			<div class="alert alert-danger">
+				<strong> Debe ingresar un correo valido </strong>
+			</div>
+		{% endfor %}
+</div>
+
+<div class="group">
+  <input type="password" name="password1"><span class="highlight"></span><span class="bar"></span>
+  <label>Ingrese su contraseña</label>
+</div>
+
+<div class="group">
+  <input type="password" name="password2"><span class="highlight"></span><span class="bar"></span>
+  <label>Repetir contraseña</label>
+		{% for error in form.first_name.errors %}
+			<div class="alert alert-danger">
+				<strong> Las contraseñas no coinciden </strong>
+			</div>
+		{% endfor %}
+</div>
+
+<button type="submit" class="button buttonBlue" id="boton">Crear Cuenta
+  <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+</button>
+
+<div class="new-account">
+	<a href="{% url 'login' %}">Ya tengo cuenta</a>
+</div>
+</form>
+
+<footer><a href="https://www.duoc.cl"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Logo_DuocUC.svg/800px-Logo_DuocUC.svg.png"></a>
+<p>GitHub - <a href="https://github.com/JKMatta/FeriaVirtual" target="_blank">Repositorio</a></p>
+</footer>
+
+{% endblock %}
+<script src="{% static 'js/newaccount.js' %}"></script>
